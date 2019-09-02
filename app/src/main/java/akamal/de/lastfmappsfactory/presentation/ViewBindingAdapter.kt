@@ -16,6 +16,13 @@ fun loadImageFromUrl(view: ImageView, url: String?) {
         transition(DrawableTransitionOptions.withCrossFade()).into(view)
 }
 
+@BindingAdapter("loadImageFromCache")
+fun loadImageFromCache(view: ImageView, url: String?) {
+    Glide.with(view.context).load(url).
+        onlyRetrieveFromCache(true).
+        transition(DrawableTransitionOptions.withCrossFade()).into(view)
+}
+
 @BindingAdapter("bindingViewsErrorState")
 fun <T> bindingViewsErrorState(view: TextView, viewState: BaseViewState<List<T>>) {
     if(viewState is BaseViewState.Error) { view.visibility = View.VISIBLE; view.text = viewState.message } else view.visibility = View.GONE
