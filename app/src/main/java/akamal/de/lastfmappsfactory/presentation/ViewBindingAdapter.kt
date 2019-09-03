@@ -1,10 +1,11 @@
 package akamal.de.lastfmappsfactory.presentation
 
+import akamal.de.lastfmappsfactory.data.topAlbums.model.TopAlbum
 import akamal.de.lastfmappsfactory.platform.bases.BaseViewState
+import akamal.de.lastfmappsfactory.presentation.topAlbums.TopAlbumsRvAdapter
 import android.view.View
 import android.widget.*
 import androidx.databinding.BindingAdapter
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -41,17 +42,18 @@ fun <T> bindingViewsRetryState(view: Button, viewState: BaseViewState<List<T>>) 
 
 
 @BindingAdapter("bindingAdapterSuccessState")
-fun <T> bindingAdapterSuccessState(view: RecyclerView, viewState: BaseViewState<List<T>>) {
-    val adapter = view.adapter
+fun <T> bindingAdapterSuccessState(rv: RecyclerView, viewState: BaseViewState<List<T>>) {
+    val adapter = rv.adapter
     if(viewState is BaseViewState.Success) {
-        view.visibility = View.VISIBLE
+        rv.visibility = View.VISIBLE
         when (adapter) {
-            is BaseAdapter -> {
-                view.addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
+            is TopAlbumsRvAdapter -> {
+                rv.addItemDecoration(DividerItemDecoration(rv.context, DividerItemDecoration.VERTICAL))
+                adapter.submitList(viewState.data as List<TopAlbum>)
                 //submit list
             }
         }
     } else {
-        view.visibility = View.GONE
+        rv.visibility = View.GONE
     }
 }

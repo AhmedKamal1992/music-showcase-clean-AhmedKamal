@@ -27,6 +27,7 @@ class TopAlbumsFragment : BaseFragment<FragmentTopAlbumsBinding>() {
             binding.get()?.apply {
                 viewModel = this@viewModel
                 rvAlbumsList.adapter = adapter
+                lifecycleOwner = this@TopAlbumsFragment
             }
         }
     }

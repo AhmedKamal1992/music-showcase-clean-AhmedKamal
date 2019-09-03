@@ -1,6 +1,8 @@
 package akamal.de.lastfmappsfactory.app.injection
 
 import akamal.de.lastfmappsfactory.BuildConfig
+import akamal.de.lastfmappsfactory.R
+import akamal.de.lastfmappsfactory.app.constants.Constants
 import android.app.Application
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -24,7 +26,18 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient(interceptor: Interceptor): OkHttpClient = OkHttpClient.Builder().addInterceptor(LoggingInterceptor()).build()
+    fun providesAuthorizationInterceptor(): Interceptor {
+        return Interceptor { chain ->
+            val originalRequest = chain.request()
+            val authRequest = chain.request().url.newBuilder().
+            addQueryParameter("api_key", Constants.API_KEY).build()
+            chain.proceed(originalRequest.newBuilder().url(authRequest).build())
+        }
+    }
+
+    @Singleton
+    @Provides
+    fun providesOkHttpClient(interceptor: Interceptor): OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor(LoggingInterceptor()).build()
 
     @Singleton
     @Provides

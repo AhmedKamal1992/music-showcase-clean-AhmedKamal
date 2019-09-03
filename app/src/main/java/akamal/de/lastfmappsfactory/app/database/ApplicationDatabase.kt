@@ -1,13 +1,19 @@
 package akamal.de.lastfmappsfactory.app.database
 
+import akamal.de.lastfmappsfactory.data.topAlbumsDetails.localDataSource.TopAlbumsDetailsDao
+import akamal.de.lastfmappsfactory.data.topAlbumsDetails.model.TopAlbumDetails
+import akamal.de.lastfmappsfactory.data.topAlbumsDetails.model.Tracks
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
-@Database(entities = [], version = 1, exportSchema = false)
+@Database(entities = [TopAlbumDetails::class], version = 1, exportSchema = false)
+@TypeConverters(DatabaseTypeConverters::class)
 abstract class ApplicationDatabase: RoomDatabase() {
 
+    abstract fun topAlbumsDetailsDao(): TopAlbumsDetailsDao
 
     companion object {
         /**

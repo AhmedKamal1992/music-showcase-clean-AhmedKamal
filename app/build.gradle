@@ -16,12 +16,21 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", '"staging_url"'
+            buildConfigField "String", "BASE_URL", '"https://ws.audioscrobbler.com/2.0/?method=album.getinfo"'
         }
 
         release {
             buildConfigField "String", "BASE_URL", '"production_url"'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     androidExtensions {
@@ -39,6 +48,7 @@ dependencies {
 
     //Compile time dependencies
     implementation applicationDependencies.constraintLayout
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt applicationDependencies.archComponentsCompiler
     kapt applicationDependencies.daggerCompiler
     kapt applicationDependencies.daggerAnnotationProcessor
@@ -63,8 +73,6 @@ dependencies {
     implementation applicationDependencies.okhttpLoggingInterceptor
     implementation applicationDependencies.room
     implementation applicationDependencies.roomRx
-    implementation applicationDependencies.paging
-    implementation applicationDependencies.pagingRx
 
     //Unit/Integration tests dependencies
     testImplementation unitTestDependencies.kotlin

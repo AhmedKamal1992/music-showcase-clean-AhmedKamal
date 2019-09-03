@@ -22,7 +22,7 @@ abstract class BaseFragment<B: ViewDataBinding>: Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(layoutInflater, layoutId(), container, false)
+        binding = WeakReference(DataBindingUtil.inflate(layoutInflater, layoutId(), container, false))
         return binding.get()?.root
     }
 }

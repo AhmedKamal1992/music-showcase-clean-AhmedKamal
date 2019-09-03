@@ -19,13 +19,11 @@ class TopAlbumsViewModel @Inject constructor(application: Application, private v
 
     private fun getAllAlbums() {
         topAlbumsViewState.value = BaseViewState.Loading()
-        compositeDisposable.add(useCase.getAllAlbums().subscribe {
-            dataResult ->
-                when(dataResult) {
-                    is DataResult.Success -> { topAlbumsViewState.value = BaseViewState.Success(dataResult.result.topalbums.album) }
-                    is DataResult.Error -> { dataResult.throwable.message?.let { topAlbumsViewState.value = BaseViewState.Error(it) } }
-                }
-        })
+        compositeDisposable.add(useCase.getAllAlbums().subscribe ({dataResult ->
+            when(dataResult) {
+                is DataResult.Success -> { topAlbumsViewState.value = BaseViewState.Success(dataResult.result.topalbums.album) }
+                is DataResult.Error -> { dataResult.throwable.message?.let { topAlbumsViewState.value = BaseViewState.Error(it) } }
+            }},{ throwable -> throwable.message?.let { topAlbumsViewState.value = BaseViewState.Error(it) } }))
     }
 
 }

@@ -1,6 +1,5 @@
 package akamal.de.lastfmappsfactory.platform.bases
 
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView

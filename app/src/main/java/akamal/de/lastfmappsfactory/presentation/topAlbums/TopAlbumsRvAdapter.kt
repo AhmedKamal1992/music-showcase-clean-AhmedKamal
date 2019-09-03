@@ -39,7 +39,7 @@ class TopAlbumsRvAdapter: BaseRvAdapter<TopAlbum, TopAlbumsRvAdapter.TopAlbumsVi
 class TopAlbumsRvViewModel(album: TopAlbum):ViewModel() {
     val title = ObservableField(album.name)
     val image = ObservableField(album.image[0].imageUrl)
-    val playCount = ObservableField(album.playcount)
+    val playCount = ObservableField(album.playcount.toString())
 }
 
 class TopAlbumsDiffCallback: DiffUtil.ItemCallback<TopAlbum>() {
