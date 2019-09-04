@@ -4,6 +4,8 @@ import akamal.de.lastfmappsfactory.data.topAlbums.model.AlbumImage
 import akamal.de.lastfmappsfactory.data.albumsDetails.model.AlbumTracks
 import androidx.room.TypeConverter
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 
 class DatabaseTypeConverters {
 
@@ -14,7 +16,7 @@ class DatabaseTypeConverters {
 
     @TypeConverter
     fun convertToImage(value: String?): List<AlbumImage>? {
-        return (if (value == null) null else Gson().fromJson(value, listOf<AlbumImage>()::class.java))
+        return Gson().fromJson(value, object : TypeToken<List<AlbumImage>>() {}.type)
     }
 
     @TypeConverter
@@ -24,6 +26,6 @@ class DatabaseTypeConverters {
 
     @TypeConverter
     fun convertToTrackList(value: String): List<AlbumTracks>? {
-        return Gson().fromJson(value, listOf<AlbumTracks>()::class.java)
+        return Gson().fromJson(value, object : TypeToken<List<AlbumTracks>>() {}.type)
     }
 }

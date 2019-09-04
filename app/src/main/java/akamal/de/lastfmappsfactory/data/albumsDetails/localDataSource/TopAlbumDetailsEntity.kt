@@ -1,5 +1,6 @@
 package akamal.de.lastfmappsfactory.data.albumsDetails.localDataSource
 
+import akamal.de.lastfmappsfactory.data.albumsDetails.model.Artist
 import akamal.de.lastfmappsfactory.data.albumsDetails.model.TopAlbumDetails
 import akamal.de.lastfmappsfactory.data.albumsDetails.model.Tracks
 import akamal.de.lastfmappsfactory.data.topAlbums.model.AlbumImage

@@ -31,7 +31,8 @@ class AlbumDetailsFragment : BaseFragment<FragmentAlbumDetailsBinding>() {
     }
 
     override fun layoutId(): Int = R.layout.fragment_album_details
-    lateinit var albumDetailsResponse: TopAlbumDetails
+
+    private lateinit var albumDetailsResponse: TopAlbumDetails
     @Inject lateinit var factory: ViewModelProvider.Factory
     @Inject lateinit var adapter:AlbumDetailsTracksRvAdapter
 

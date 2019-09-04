@@ -26,7 +26,7 @@ class AlbumDetailsViewModel @Inject constructor(application: Application, privat
     }
 
     fun saveOrRemoveAlbum(album: TopAlbumDetails) {
-        album.let { it.isFavorite?.let { if(it) { removeSingleAlbum(album.toAlbumEntity()) } else saveSingleAlbum(album.toAlbumEntity()) } }
+        album.let { if(album.isFavorite) { removeSingleAlbum(album.toAlbumEntity()) } else saveSingleAlbum(album.toAlbumEntity()) }
     }
 
     private fun saveSingleAlbum(album: TopAlbumDetailsEntity) {

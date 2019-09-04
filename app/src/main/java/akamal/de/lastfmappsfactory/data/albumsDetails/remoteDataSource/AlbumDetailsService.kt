@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface AlbumDetailsService {
     @GET("/2.0/?method=album.getinfo&format=json")
-    fun getTopAlbums(@Query("artist") artistId: String, @Query("album") albumId: String): Single<AlbumsDetailsResponse>
+    fun getTopAlbums(@Query("artist") artistId: String, @Query("mbid") albumId: String): Single<AlbumsDetailsResponse>
 }

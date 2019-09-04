@@ -18,19 +18,24 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_large_material"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             tools:text="Album Name"
+            android:text="@{albumDetails.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:adjustViewBounds="true"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:loadImageFromUrl="@{albumDetails.image[2].imageUrl}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             tools:src="@tools:sample/avatars" />
@@ -39,8 +44,11 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_medium_material"
             android:layout_marginTop="16dp"
             tools:text="Artist Name"
+            android:text="@{albumDetails.artist}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -67,6 +75,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
             android:text="@{isAlbumInFavorites ? @string/remove_from_favorites: @string/add_to_favorites}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

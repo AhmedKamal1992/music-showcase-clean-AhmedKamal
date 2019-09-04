@@ -12,7 +12,7 @@ data class TopAlbumDetails(
     val playcount: String,
     val tracks: Tracks
 ){
-    var isFavorite: Boolean? = false
+    var isFavorite: Boolean = false
 }
 
 fun TopAlbumDetails.toAlbumEntity(): TopAlbumDetailsEntity = TopAlbumDetailsEntity(mbid, artist, image, name, playcount, tracks)

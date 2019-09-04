@@ -7,6 +7,8 @@ import akamal.de.lastfmappsfactory.platform.bases.BaseRvAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
@@ -16,7 +18,6 @@ class AlbumDetailsTracksRvAdapter: BaseRvAdapter<AlbumTracks, AlbumDetailsTracks
     }
 
     override fun onBindViewHolder(viewHolder: TracksViewHolder, position: Int) {
-        super.onBindViewHolder(viewHolder, position)
         getItem(position)?.let {
             with(viewHolder) {
                 itemView.tag = it.url
@@ -28,10 +29,15 @@ class AlbumDetailsTracksRvAdapter: BaseRvAdapter<AlbumTracks, AlbumDetailsTracks
     class TracksViewHolder(private val binding: ItemTracksBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(singleTrack: AlbumTracks) {
             with(binding) {
-                track = singleTrack
+                track = TracksRvViewModel(singleTrack)
                 executePendingBindings()
             }
         }
+    }
+
+    class TracksRvViewModel(singleTrack: AlbumTracks):ViewModel() {
+        val trackName = ObservableField(singleTrack.name)
+        val duration = ObservableField(singleTrack.durationDivided)
     }
 
     class TracksDiffCallback: DiffUtil.ItemCallback<AlbumTracks>() {
