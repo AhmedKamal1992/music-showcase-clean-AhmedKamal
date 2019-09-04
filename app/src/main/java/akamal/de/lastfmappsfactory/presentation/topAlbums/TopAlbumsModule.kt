@@ -5,7 +5,7 @@ import akamal.de.lastfmappsfactory.data.topAlbums.remoteDataSource.TopAlbumsRemo
 import akamal.de.lastfmappsfactory.data.topAlbums.remoteDataSource.TopAlbumsService
 import akamal.de.lastfmappsfactory.data.topAlbums.repository.TopAlbumsRepository
 import akamal.de.lastfmappsfactory.data.topAlbums.repository.TopAlbumsRepositoryImpl
-import akamal.de.lastfmappsfactory.data.topAlbumsDetails.localDataSource.TopAlbumsDetailsLocalDataSource
+import akamal.de.lastfmappsfactory.data.albumsDetails.localDataSource.AlbumsDetailsLocalDataSource
 import akamal.de.lastfmappsfactory.domain.topAlbums.TopAlbumsUseCase
 import akamal.de.lastfmappsfactory.domain.topAlbums.TopAlbumsUseCaseImpl
 import androidx.lifecycle.ViewModel
@@ -40,7 +40,7 @@ class TopAlbumsViewModelModule {
 
     @Singleton
     @Provides
-    fun providesTopAlbumsRepository(localDataSource: TopAlbumsDetailsLocalDataSource, remoteDataSource: TopAlbumsRemoteDataSource): TopAlbumsRepository = TopAlbumsRepositoryImpl(remoteDataSource, localDataSource)
+    fun providesTopAlbumsRepository(localDataSource: AlbumsDetailsLocalDataSource, remoteDataSource: TopAlbumsRemoteDataSource): TopAlbumsRepository = TopAlbumsRepositoryImpl(remoteDataSource, localDataSource)
 
     @Singleton
     @Provides

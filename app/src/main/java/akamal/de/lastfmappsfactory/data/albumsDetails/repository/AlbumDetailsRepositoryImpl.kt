@@ -1,6 +1,7 @@
 package akamal.de.lastfmappsfactory.data.albumsDetails.repository
 
 import akamal.de.lastfmappsfactory.data.albumsDetails.localDataSource.AlbumsDetailsLocalDataSource
+import akamal.de.lastfmappsfactory.data.albumsDetails.localDataSource.TopAlbumDetailsEntity
 import akamal.de.lastfmappsfactory.data.albumsDetails.model.AlbumsDetailsResponse
 import akamal.de.lastfmappsfactory.data.albumsDetails.model.TopAlbumDetails
 import akamal.de.lastfmappsfactory.data.albumsDetails.remoteDataSource.AlbumDetailsRemoteDataSource
@@ -20,6 +21,6 @@ class AlbumDetailsRepositoryImpl @Inject constructor(private val remoteDataSourc
                 return@BiFunction DataResult.Success(DataSource.Both, response) as DataResult<AlbumsDetailsResponse> }).onErrorReturn { DataResult.Error(DataSource.Network, it)}
 
 
-    override fun saveSingleAlbum(album: TopAlbumDetails): Completable = localDataSource.saveAlbum(album)
-    override fun deleteSingleAlbum(album: TopAlbumDetails): Completable = localDataSource.deleteAlbum(album)
+    override fun saveSingleAlbum(album: TopAlbumDetailsEntity): Completable = localDataSource.saveAlbum(album)
+    override fun deleteSingleAlbum(album: TopAlbumDetailsEntity): Completable = localDataSource.deleteAlbum(album)
 }

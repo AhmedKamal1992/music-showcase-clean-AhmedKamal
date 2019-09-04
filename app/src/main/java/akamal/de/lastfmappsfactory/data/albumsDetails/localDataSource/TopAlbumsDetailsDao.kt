@@ -8,14 +8,14 @@ import io.reactivex.Single
 @Dao
 interface TopAlbumsDetailsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveAlbum(album: TopAlbumDetails): Completable
+    fun saveAlbum(album: TopAlbumDetailsEntity): Completable
 
     @Query("SELECT * FROM albums")
-    fun getAllAlbums(): Single<List<TopAlbumDetails>>
+    fun getAllAlbums(): Single<List<TopAlbumDetailsEntity>>
 
     @Query("SELECT * FROM albums WHERE albumId = :Id")
-    fun getSingleAlbum(Id: String): Single<TopAlbumDetails>
+    fun getSingleAlbum(Id: String): Single<TopAlbumDetailsEntity>
 
     @Delete
-    fun deleteSingleAlbum(album: TopAlbumDetails): Completable
+    fun deleteSingleAlbum(album: TopAlbumDetailsEntity): Completable
 }

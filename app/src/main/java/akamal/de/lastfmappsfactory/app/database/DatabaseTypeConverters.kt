@@ -1,7 +1,7 @@
 package akamal.de.lastfmappsfactory.app.database
 
 import akamal.de.lastfmappsfactory.data.topAlbums.model.AlbumImage
-import akamal.de.lastfmappsfactory.data.topAlbumsDetails.model.AblumTracks
+import akamal.de.lastfmappsfactory.data.albumsDetails.model.AlbumTracks
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 
@@ -18,12 +18,12 @@ class DatabaseTypeConverters {
     }
 
     @TypeConverter
-    fun convertFromTrackList(value: List<AblumTracks>): String? {
+    fun convertFromTrackList(value: List<AlbumTracks>): String? {
         return Gson().toJson(value)
     }
 
     @TypeConverter
-    fun convertToTrackList(value: String): List<AblumTracks>? {
-        return Gson().fromJson(value, listOf<AblumTracks>()::class.java)
+    fun convertToTrackList(value: String): List<AlbumTracks>? {
+        return Gson().fromJson(value, listOf<AlbumTracks>()::class.java)
     }
 }

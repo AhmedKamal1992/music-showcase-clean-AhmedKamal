@@ -1,7 +1,7 @@
 package akamal.de.lastfmappsfactory.app.injection
 
 import akamal.de.lastfmappsfactory.app.database.ApplicationDatabase
-import akamal.de.lastfmappsfactory.data.topAlbumsDetails.localDataSource.TopAlbumsDetailsDao
+import akamal.de.lastfmappsfactory.data.albumsDetails.localDataSource.TopAlbumsDetailsDao
 import android.content.Context
 import dagger.Module
 import dagger.Provides

@@ -1,6 +1,6 @@
 package akamal.de.lastfmappsfactory.data.albumsDetails.model
 
-data class AblumTracks(
+data class AlbumTracks(
     val artist: Artist,
     val duration: String,
     val name: String,

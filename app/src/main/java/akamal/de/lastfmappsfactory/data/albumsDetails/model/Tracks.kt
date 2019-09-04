@@ -4,5 +4,5 @@ import androidx.room.ColumnInfo
 
 data class Tracks(
     @ColumnInfo(name = "tracks")
-    val track: List<AblumTracks>) {
+    val track: List<AlbumTracks>) {
 }

@@ -8,7 +8,7 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class AlbumsDetailsLocalDataSource @Inject constructor(private val dao: TopAlbumsDetailsDao) {
-    fun saveAlbum(album: TopAlbumDetails): Completable = dao.saveAlbum(album).compose(RxCompletableCallback.getSchedulersForCompletable())
-    fun deleteAlbum(album: TopAlbumDetails): Completable = dao.saveAlbum(album).compose(RxCompletableCallback.getSchedulersForCompletable())
-    fun getSingleAlbum(albumId: String): Single<TopAlbumDetails> = dao.getSingleAlbum(albumId).compose(RxSingleCallback.getSchedulersForSingle())
+    fun saveAlbum(album: TopAlbumDetailsEntity): Completable = dao.saveAlbum(album).compose(RxCompletableCallback.getSchedulersForCompletable())
+    fun deleteAlbum(album: TopAlbumDetailsEntity): Completable = dao.saveAlbum(album).compose(RxCompletableCallback.getSchedulersForCompletable())
+    fun getSingleAlbum(albumId: String): Single<TopAlbumDetailsEntity> = dao.getSingleAlbum(albumId).compose(RxSingleCallback.getSchedulersForSingle())
 }

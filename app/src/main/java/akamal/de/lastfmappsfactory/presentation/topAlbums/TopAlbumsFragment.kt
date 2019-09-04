@@ -8,9 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 
 import akamal.de.lastfmappsfactory.R
+import akamal.de.lastfmappsfactory.data.topAlbums.model.TopAlbum
 import akamal.de.lastfmappsfactory.databinding.FragmentTopAlbumsBinding
 import akamal.de.lastfmappsfactory.platform.bases.BaseFragment
+import akamal.de.lastfmappsfactory.platform.bases.RecyclerViewClickListener
 import akamal.de.lastfmappsfactory.platform.extension.viewModel
+import akamal.de.lastfmappsfactory.presentation.AppMainActivity
+import akamal.de.lastfmappsfactory.presentation.albumDetails.AlbumDetailsFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import javax.inject.Inject
@@ -28,6 +32,9 @@ class TopAlbumsFragment : BaseFragment<FragmentTopAlbumsBinding>() {
                 viewModel = this@viewModel
                 rvAlbumsList.adapter = adapter
                 lifecycleOwner = this@TopAlbumsFragment
+                adapter.setRecyclerViewClickListener(object: RecyclerViewClickListener {
+                    override fun <T> itemClickListener(selectedData: T) { with(selectedData as TopAlbum) { (activity as AppMainActivity).replaceFragment(AlbumDetailsFragment.newInstance(selectedData.mbid)) } }
+                })
             }
         }
     }
