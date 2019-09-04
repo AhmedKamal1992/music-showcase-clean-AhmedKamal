@@ -13,6 +13,10 @@ class AppMainActivity : BaseActivity<ActivityAppMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         replaceFragment(TopAlbumsFragment())
+        binding.get()?.let {
+            it.view = this
+            it.favImg.setOnClickListener {  }
+        }
     }
 }
 
