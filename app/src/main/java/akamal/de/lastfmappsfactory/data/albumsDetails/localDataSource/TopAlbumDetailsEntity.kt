@@ -26,4 +26,8 @@ data class TopAlbumDetailsEntity(
     val tracks: Tracks
 )
 
-fun TopAlbumDetailsEntity.toAlbumDetails(): TopAlbumDetails = TopAlbumDetails(mbid, artist, image, name, playcount, tracks)
+fun TopAlbumDetailsEntity.toAlbumDetails(): TopAlbumDetails {
+    val response = TopAlbumDetails(mbid, artist, image, name, playcount, tracks)
+    response.isFavorite = true
+    return response
+}

@@ -15,7 +15,7 @@ class AppMainActivity : BaseActivity<ActivityAppMainBinding>() {
         replaceFragment(TopAlbumsFragment())
         binding.get()?.let {
             it.view = this
-            it.favImg.setOnClickListener {  }
+            it.btnFav.setOnClickListener {  }
         }
     }
 }
