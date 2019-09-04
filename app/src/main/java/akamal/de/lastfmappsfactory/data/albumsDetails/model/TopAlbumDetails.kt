@@ -1,10 +1,7 @@
-package akamal.de.lastfmappsfactory.data.topAlbumsDetails.model
+package akamal.de.lastfmappsfactory.data.albumsDetails.model
 
 import akamal.de.lastfmappsfactory.data.topAlbums.model.AlbumImage
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "albums")
 data class TopAlbumDetails(
@@ -20,5 +17,7 @@ data class TopAlbumDetails(
     @ColumnInfo(name = "playCount")
     val playcount: String,
     @Embedded
-    val tracks: Tracks
+    val tracks: Tracks,
+    @Ignore
+    var isFavorite:Boolean = false
 )

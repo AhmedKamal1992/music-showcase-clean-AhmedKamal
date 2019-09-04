@@ -1,11 +1,8 @@
-package akamal.de.lastfmappsfactory.data.topAlbumsDetails.localDataSource
+package akamal.de.lastfmappsfactory.data.albumsDetails.localDataSource
 
-import akamal.de.lastfmappsfactory.data.topAlbums.model.TopAlbum
-import akamal.de.lastfmappsfactory.data.topAlbums.model.TopAlbums
-import akamal.de.lastfmappsfactory.data.topAlbumsDetails.model.TopAlbumDetails
+import akamal.de.lastfmappsfactory.data.albumsDetails.model.TopAlbumDetails
 import androidx.room.*
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
 
 @Dao

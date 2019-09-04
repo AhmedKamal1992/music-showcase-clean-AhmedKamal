@@ -5,4 +5,4 @@ sealed class DataResult<E>(val source: DataSource) {
     class Error<E>(source: DataSource, val throwable: Throwable): DataResult<E>(source)
 }
 
-enum class DataSource { Network, Local }
+enum class DataSource { Network, Local, Both }

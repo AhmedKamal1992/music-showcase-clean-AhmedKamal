@@ -1,4 +1,4 @@
-package akamal.de.lastfmappsfactory.data.topAlbumsDetails.model
+package akamal.de.lastfmappsfactory.data.albumsDetails.model
 
 data class AblumTracks(
     val artist: Artist,
