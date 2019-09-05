@@ -18,7 +18,7 @@ import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 class AlbumDetailsRepositoryImpl @Inject constructor(private val remoteDataSource: AlbumDetailsRemoteDataSource, private val localDataSource: AlbumsDetailsLocalDataSource): AlbumDetailsRepository {
-    override fun getAlbumDetails(albumId: String): Flowable<DataResult<AlbumsDetailsResponse>> {
+    override fun getAlbumDetails(albumId: String): Single<DataResult<AlbumsDetailsResponse>> {
 
         val remoteSource = Single.zip(localDataSource.getSingleAlbum(albumId).map { true }.onErrorReturn { false }, remoteDataSource.getAlbumDetails(albumId),
             BiFunction<Boolean, AlbumsDetailsResponse, DataResult<AlbumsDetailsResponse>> { isFavorite, response ->
@@ -26,11 +26,10 @@ class AlbumDetailsRepositoryImpl @Inject constructor(private val remoteDataSourc
                 return@BiFunction DataResult.Success(DataSource.Both, response) as DataResult<AlbumsDetailsResponse> }).
                 onErrorReturn { DataResult.Error(DataSource.Network, it)}
 
-        val localSource = localDataSource.getSingleAlbum(albumId).map { DataResult.Success(DataSource.Network,
+        return localDataSource.getSingleAlbum(albumId).map { DataResult.Success(DataSource.Network,
             AlbumsDetailsResponse(it.toAlbumDetails())) as DataResult<AlbumsDetailsResponse> }.
-            onErrorReturn { DataResult.Error(DataSource.Network, it) }.dropRequest()
+            onErrorResumeNext { remoteSource }.onErrorReturn { DataResult.Error(DataSource.Network, it)}
 
-            return Single.concatArrayEager(localSource, remoteSource)
     }
 
 

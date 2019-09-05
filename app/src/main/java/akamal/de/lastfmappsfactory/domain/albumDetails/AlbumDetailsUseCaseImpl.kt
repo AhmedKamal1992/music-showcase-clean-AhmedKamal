@@ -11,7 +11,7 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class AlbumDetailsUseCaseImpl @Inject constructor(private val repository: AlbumDetailsRepository): AlbumDetailsUseCase {
-    override fun getAlbumDetails(albumId: String): Flowable<DataResult<AlbumsDetailsResponse>> = repository.getAlbumDetails(albumId)
+    override fun getAlbumDetails(albumId: String): Single<DataResult<AlbumsDetailsResponse>> = repository.getAlbumDetails(albumId)
     override fun saveSingleAlbum(album: TopAlbumDetailsEntity): Completable = repository.saveSingleAlbum(album)
     override fun removeSingleAlbum(album: TopAlbumDetailsEntity): Completable = repository.deleteSingleAlbum(album)
 }

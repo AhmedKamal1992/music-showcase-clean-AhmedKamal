@@ -97,6 +97,8 @@
             android:id="@+id/albums_error_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium_material"
+            android:textColor="@color/black"
             app:bindingViewsObjectErrorState="@{viewModel.albumDetailsViewState}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

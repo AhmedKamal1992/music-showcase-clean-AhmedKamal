@@ -9,7 +9,7 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 
 interface AlbumDetailsUseCase {
-    fun getAlbumDetails(albumId: String): Flowable<DataResult<AlbumsDetailsResponse>>
+    fun getAlbumDetails(albumId: String): Single<DataResult<AlbumsDetailsResponse>>
     fun saveSingleAlbum(album: TopAlbumDetailsEntity): Completable
     fun removeSingleAlbum(album: TopAlbumDetailsEntity): Completable
 }
