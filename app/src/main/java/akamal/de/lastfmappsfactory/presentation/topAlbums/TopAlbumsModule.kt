@@ -20,7 +20,7 @@ import javax.inject.Singleton
 @Module(includes = [TopAlbumsViewModelModule::class, TopAlbumsApiModule::class])
 abstract class TopAlbumsModule {
 
-    @ContributesAndroidInjector(modules = [TopAlbumsViewModule::class])
+    @ContributesAndroidInjector(modules = [AlbumListViewModule::class])
     abstract fun injectTopAlbumsFragment(): TopAlbumsFragment
 
     @Binds
@@ -30,7 +30,7 @@ abstract class TopAlbumsModule {
 }
 
 @Module
-class TopAlbumsViewModule {
+class AlbumListViewModule {
     @Provides
     fun providesTopAlbumsAdapter(): TopAlbumsRvAdapter = TopAlbumsRvAdapter()
 }

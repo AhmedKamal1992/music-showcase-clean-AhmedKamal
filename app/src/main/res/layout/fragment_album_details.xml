@@ -6,6 +6,7 @@
 
     <data>
         <variable name="albumDetails" type="akamal.de.lastfmappsfactory.data.albumsDetails.model.TopAlbumDetails" />
+        <variable name="viewModel" type="akamal.de.lastfmappsfactory.presentation.albumDetails.AlbumDetailsViewModel" />
         <variable name="isAlbumInFavorites" type="Boolean" />
     </data>
 
@@ -75,11 +76,32 @@
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="16dp"
+            app:bindingViewsObjectLoadingState="@{viewModel.albumDetailsViewState}"
             android:textColor="@color/white"
             android:text="@{isAlbumInFavorites ? @string/remove_from_favorites: @string/add_to_favorites}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/albums_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bindingViewsObjectLoadingState="@{viewModel.albumDetailsViewState}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/albums_error_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bindingViewsObjectErrorState="@{viewModel.albumDetailsViewState}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

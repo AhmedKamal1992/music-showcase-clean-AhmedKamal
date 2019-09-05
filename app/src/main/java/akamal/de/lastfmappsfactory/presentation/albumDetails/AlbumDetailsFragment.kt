@@ -40,21 +40,23 @@ class AlbumDetailsFragment : BaseFragment<FragmentAlbumDetailsBinding>() {
         super.onStart()
         binding.get()?.apply {
             isAlbumInFavorites = false
-            val viewModel = ViewModelProviders.of(this@AlbumDetailsFragment, factory).get(AlbumDetailsViewModel::class.java)
-            viewModel.albumDetailsMutable.observe(viewLifecycleOwner, Observer { album ->
+            val albumDetailsviewModel = ViewModelProviders.of(this@AlbumDetailsFragment, factory).get(AlbumDetailsViewModel::class.java)
+            viewModel = albumDetailsviewModel
+            albumDetailsviewModel.albumDetailsMutable.observe(viewLifecycleOwner, Observer { album ->
                 album?.let { albumDetailsResponse = album
                     albumDetails = album
                     isAlbumInFavorites = album.isFavorite
                     rvTracks.adapter = adapter
                     adapter.submitList(album.tracks.track)
 
-                btnAddRemoveFavorites.setOnClickListener { viewModel.saveOrRemoveAlbum(albumDetailsResponse) } } })
+                btnAddRemoveFavorites.setOnClickListener { albumDetailsviewModel.saveOrRemoveAlbum(albumDetailsResponse) } } })
 
-            viewModel.isSavedInDbMutable.observe(viewLifecycleOwner, Observer { it?.let { isAlbumInFavorites = it; albumDetailsResponse.isFavorite = it; albumDetails = albumDetailsResponse } })
+            albumDetailsviewModel.isSavedInDbMutable.observe(viewLifecycleOwner, Observer { it?.let { isAlbumInFavorites = it; albumDetailsResponse.isFavorite = it; albumDetails = albumDetailsResponse } })
 
             arguments?.getString(ARG_ALBUM_ID)?.let {
-                viewModel.getAlbumDetails(it)
+                albumDetailsviewModel.getAlbumDetails(it)
             }
+            lifecycleOwner = this@AlbumDetailsFragment
         }
     }
 }

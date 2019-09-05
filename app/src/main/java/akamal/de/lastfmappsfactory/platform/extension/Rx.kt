@@ -19,7 +19,7 @@ fun <T> Single<T>.dropRequest(): Single<T> {
     }
 }
 
-fun <T> Completable.dropRequest(): Completable {
+fun Completable.dropRequest(): Completable {
     return this.onErrorResumeNext { error: Throwable ->
         throw CompositeException(error)
     }

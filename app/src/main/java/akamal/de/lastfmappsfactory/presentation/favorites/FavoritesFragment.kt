@@ -1,4 +1,4 @@
-package akamal.de.lastfmappsfactory.presentation.topAlbums
+package akamal.de.lastfmappsfactory.presentation.favorites
 
 
 import android.os.Bundle
@@ -9,33 +9,34 @@ import android.view.ViewGroup
 
 import akamal.de.lastfmappsfactory.R
 import akamal.de.lastfmappsfactory.data.topAlbums.model.TopAlbum
-import akamal.de.lastfmappsfactory.databinding.FragmentTopAlbumsBinding
+import akamal.de.lastfmappsfactory.databinding.FragmentFavoritesBinding
 import akamal.de.lastfmappsfactory.platform.bases.BaseFragment
 import akamal.de.lastfmappsfactory.platform.bases.RecyclerViewClickListener
 import akamal.de.lastfmappsfactory.platform.extension.viewModel
 import akamal.de.lastfmappsfactory.presentation.AppMainActivity
 import akamal.de.lastfmappsfactory.presentation.albumDetails.AlbumDetailsFragment
-import akamal.de.lastfmappsfactory.presentation.favorites.FavoritesFragment
+import akamal.de.lastfmappsfactory.presentation.topAlbums.TopAlbumsRvAdapter
+import akamal.de.lastfmappsfactory.presentation.topAlbums.TopAlbumsViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import javax.inject.Inject
 
-class TopAlbumsFragment : BaseFragment<FragmentTopAlbumsBinding>() {
-    override fun layoutId(): Int = R.layout.fragment_top_albums
+class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
+    override fun layoutId(): Int = R.layout.fragment_favorites
 
     @Inject lateinit var adapter: TopAlbumsRvAdapter
     @Inject lateinit var factory: ViewModelProvider.Factory
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel<TopAlbumsViewModel>(factory) {
+        viewModel<FavoritesViewModel>(factory) {
             binding.get()?.apply {
+                this@viewModel.getAllAlbums()
                 viewModel = this@viewModel
-                btnFav.setOnClickListener { (activity as AppMainActivity).replaceFragment(FavoritesFragment()) }
                 rvAlbumsList.adapter = adapter
-                lifecycleOwner = this@TopAlbumsFragment
+                lifecycleOwner = this@FavoritesFragment
                 adapter.setRecyclerViewClickListener(object: RecyclerViewClickListener {
-                    override fun <T> itemClickListener(selectedData: T) { with(selectedData as TopAlbum) { (activity as AppMainActivity).replaceFragment(AlbumDetailsFragment.newInstance(selectedData.mbid)) } }
+                    override fun <T> itemClickListener(selectedData: T) { with(selectedData as TopAlbum) { (activity as AppMainActivity).replaceFragment(
+                        AlbumDetailsFragment.newInstance(selectedData.mbid)) } }
                 })
             }
         }

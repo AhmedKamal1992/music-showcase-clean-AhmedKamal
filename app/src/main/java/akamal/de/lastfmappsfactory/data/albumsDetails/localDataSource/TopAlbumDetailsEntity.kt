@@ -4,6 +4,7 @@ import akamal.de.lastfmappsfactory.data.albumsDetails.model.Artist
 import akamal.de.lastfmappsfactory.data.albumsDetails.model.TopAlbumDetails
 import akamal.de.lastfmappsfactory.data.albumsDetails.model.Tracks
 import akamal.de.lastfmappsfactory.data.topAlbums.model.AlbumImage
+import akamal.de.lastfmappsfactory.data.topAlbums.model.TopAlbum
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -31,3 +32,5 @@ fun TopAlbumDetailsEntity.toAlbumDetails(): TopAlbumDetails {
     response.isFavorite = true
     return response
 }
+
+fun TopAlbumDetailsEntity.toTopAlbums(): TopAlbum = TopAlbum(mbid, name, image, playcount.toInt())

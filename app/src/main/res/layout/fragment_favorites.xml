@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="viewModel" type="akamal.de.lastfmappsfactory.presentation.topAlbums.TopAlbumsViewModel" />
+        <variable name="viewModel" type="akamal.de.lastfmappsfactory.presentation.favorites.FavoritesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,9 +17,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_albums_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:visibility="gone"
-            app:bindingAdapterSuccessState="@{viewModel.topAlbumsViewState}"
+            app:bindingAdapterSuccessState="@{viewModel.favoritesViewState}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,36 +28,26 @@
             app:spanCount="2" />
 
         <ProgressBar
-            android:id="@+id/top_albums_progress"
+            android:id="@+id/albums_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:bindingViewsLoadingState="@{viewModel.topAlbumsViewState}"
+            app:bindingViewsLoadingState="@{viewModel.favoritesViewState}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/top_albums_error_tv"
+            android:id="@+id/albums_error_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:bindingViewsErrorState="@{viewModel.topAlbumsViewState}"
+            android:textColor="@color/black"
+            app:bindingViewsErrorState="@{viewModel.favoritesViewState}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_fav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_star" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

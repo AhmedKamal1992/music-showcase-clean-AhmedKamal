@@ -51,17 +51,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_fav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            app:srcCompat="@drawable/ic_star"
-            app:layout_constraintBottom_toBottomOf="@+id/app_main_container"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <FrameLayout
             android:id="@+id/app_main_container"
             android:layout_width="match_parent"

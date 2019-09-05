@@ -4,6 +4,5 @@ data class TopAlbum(
     val mbid: String,
     val name: String,
     val image: List<AlbumImage>,
-    val playcount: Int,
-    val url: String
+    val playcount: Int
 )

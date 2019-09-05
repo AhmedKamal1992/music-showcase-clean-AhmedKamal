@@ -1,4 +1,4 @@
-package akamal.de.lastfmappsfactory.presentation
+package akamal.de.lastfmappsfactory.presentation.bindingAdapters
 
 import akamal.de.lastfmappsfactory.data.topAlbums.model.TopAlbum
 import akamal.de.lastfmappsfactory.platform.bases.BaseViewState

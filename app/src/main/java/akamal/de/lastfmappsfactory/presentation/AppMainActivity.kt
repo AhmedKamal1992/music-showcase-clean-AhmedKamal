@@ -3,6 +3,7 @@ package akamal.de.lastfmappsfactory.presentation
 import akamal.de.lastfmappsfactory.R
 import akamal.de.lastfmappsfactory.databinding.ActivityAppMainBinding
 import akamal.de.lastfmappsfactory.platform.bases.BaseActivity
+import akamal.de.lastfmappsfactory.presentation.favorites.FavoritesFragment
 import akamal.de.lastfmappsfactory.presentation.topAlbums.TopAlbumsFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,10 +14,7 @@ class AppMainActivity : BaseActivity<ActivityAppMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         replaceFragment(TopAlbumsFragment())
-        binding.get()?.let {
-            it.view = this
-            it.btnFav.setOnClickListener {  }
-        }
+        binding.get()?.view = this
     }
 }
 

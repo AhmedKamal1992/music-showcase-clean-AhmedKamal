@@ -8,6 +8,7 @@ import akamal.de.lastfmappsfactory.data.albumsDetails.model.TopAlbumDetails
 import akamal.de.lastfmappsfactory.data.albumsDetails.remoteDataSource.AlbumDetailsRemoteDataSource
 import akamal.de.lastfmappsfactory.data.common.DataResult
 import akamal.de.lastfmappsfactory.data.common.DataSource
+import akamal.de.lastfmappsfactory.platform.extension.dropRequest
 import androidx.core.text.HtmlCompat
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -27,12 +28,12 @@ class AlbumDetailsRepositoryImpl @Inject constructor(private val remoteDataSourc
 
         val localSource = localDataSource.getSingleAlbum(albumId).map { DataResult.Success(DataSource.Network,
             AlbumsDetailsResponse(it.toAlbumDetails())) as DataResult<AlbumsDetailsResponse> }.
-            onErrorReturn { DataResult.Error(DataSource.Network, it) }
+            onErrorReturn { DataResult.Error(DataSource.Network, it) }.dropRequest()
 
             return Single.concatArrayEager(localSource, remoteSource)
     }
 
 
-    override fun saveSingleAlbum(album: TopAlbumDetailsEntity): Completable = localDataSource.saveAlbum(album)
-    override fun deleteSingleAlbum(album: TopAlbumDetailsEntity): Completable = localDataSource.deleteAlbum(album)
+    override fun saveSingleAlbum(album: TopAlbumDetailsEntity): Completable = localDataSource.saveAlbum(album).dropRequest()
+    override fun deleteSingleAlbum(album: TopAlbumDetailsEntity): Completable = localDataSource.deleteAlbum(album).dropRequest()
 }
