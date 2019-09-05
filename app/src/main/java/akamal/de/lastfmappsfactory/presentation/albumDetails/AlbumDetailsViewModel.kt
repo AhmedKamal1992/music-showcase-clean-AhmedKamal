@@ -22,7 +22,7 @@ class AlbumDetailsViewModel @Inject constructor(application: Application, privat
         compositeDisposable.add(useCase.getAlbumDetails(albumId).subscribe {
             dataResult ->
                 when(dataResult) {
-                    is DataResult.Success -> { albumDetailsViewState.value = BaseViewState.LoadingStopped(); albumDetailsMutable.value = dataResult.result.album }
+                    is DataResult.Success -> { albumDetailsViewState.value = BaseViewState.Success(dataResult.result.album); albumDetailsMutable.value = dataResult.result.album }
                     is DataResult.Error -> { dataResult.throwable.message?.let { albumDetailsViewState.value = BaseViewState.Error(it) } }
                 }
         })

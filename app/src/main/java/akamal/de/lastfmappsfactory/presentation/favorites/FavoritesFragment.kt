@@ -35,8 +35,8 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
                 rvAlbumsList.adapter = adapter
                 lifecycleOwner = this@FavoritesFragment
                 adapter.setRecyclerViewClickListener(object: RecyclerViewClickListener {
-                    override fun <T> itemClickListener(selectedData: T) { with(selectedData as TopAlbum) { (activity as AppMainActivity).replaceFragment(
-                        AlbumDetailsFragment.newInstance(selectedData.mbid)) } }
+                    override fun <T> itemClickListener(selectedData: T) { with(selectedData as TopAlbum) { selectedData.mbid?.let { (activity as AppMainActivity).replaceFragment(AlbumDetailsFragment.newInstance(it)) }
+                        ?: run { showToast(getString(R.string.no_album)) } } }
                 })
             }
         }

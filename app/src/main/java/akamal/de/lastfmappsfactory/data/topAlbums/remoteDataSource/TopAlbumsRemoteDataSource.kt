@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class TopAlbumsRemoteDataSource @Inject constructor(private val service: TopAlbumsService) {
 
-    fun getTopAlbums() = service.getTopAlbums("disturbed").compose(RxSingleCallback.getSchedulersForSingle())
+    fun getTopAlbums() = service.getTopAlbums("linkin park").compose(RxSingleCallback.getSchedulersForSingle())
 }

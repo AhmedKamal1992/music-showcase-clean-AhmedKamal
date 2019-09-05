@@ -18,6 +18,11 @@ fun <T> bindingViewsObjectLoadingState(view: ProgressBar, viewState: BaseViewSta
     view.visibility =  if(viewState is BaseViewState.Loading) View.VISIBLE else View.GONE
 }
 
+@BindingAdapter("bindingViewsObjectLoadingState")
+fun <T> bindingViewsObjectLoadingState(view: Button, viewState: BaseViewState<T>) {
+    view.visibility =  if(viewState is BaseViewState.Success) View.VISIBLE else View.GONE
+}
+
 
 @BindingAdapter("bindingViewsObjectRetryState")
 fun <T> bindingViewsObjectRetryState(view: Button, viewState: BaseViewState<T>) {

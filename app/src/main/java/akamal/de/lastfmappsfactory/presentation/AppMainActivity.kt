@@ -7,6 +7,7 @@ import akamal.de.lastfmappsfactory.presentation.favorites.FavoritesFragment
 import akamal.de.lastfmappsfactory.presentation.topAlbums.TopAlbumsFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 
 class AppMainActivity : BaseActivity<ActivityAppMainBinding>() {
     override fun layoutId(): Int = R.layout.activity_app_main
@@ -15,6 +16,10 @@ class AppMainActivity : BaseActivity<ActivityAppMainBinding>() {
         super.onCreate(savedInstanceState)
         replaceFragment(TopAlbumsFragment())
         binding.get()?.view = this
+    }
+
+    fun backState(enable: Boolean) {
+        binding.get()?.btnBack?.visibility = if(enable) View.VISIBLE else View.GONE
     }
 }
 

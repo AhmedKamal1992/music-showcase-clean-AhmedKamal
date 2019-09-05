@@ -28,6 +28,7 @@ class TopAlbumsFragment : BaseFragment<FragmentTopAlbumsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppMainActivity).backState(false)
         viewModel<TopAlbumsViewModel>(factory) {
             binding.get()?.apply {
                 viewModel = this@viewModel
@@ -35,9 +36,18 @@ class TopAlbumsFragment : BaseFragment<FragmentTopAlbumsBinding>() {
                 rvAlbumsList.adapter = adapter
                 lifecycleOwner = this@TopAlbumsFragment
                 adapter.setRecyclerViewClickListener(object: RecyclerViewClickListener {
-                    override fun <T> itemClickListener(selectedData: T) { with(selectedData as TopAlbum) { (activity as AppMainActivity).replaceFragment(AlbumDetailsFragment.newInstance(selectedData.mbid)) } }
+                    override fun <T> itemClickListener(selectedData: T) {
+                        with(selectedData as TopAlbum) {
+                            selectedData.mbid?.let { (activity as AppMainActivity).replaceFragment(AlbumDetailsFragment.newInstance(it)) } ?: run { showToast(getString(R.string.no_album)) }
+                        }
+                    }
                 })
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppMainActivity).backState(true)
     }
 }
