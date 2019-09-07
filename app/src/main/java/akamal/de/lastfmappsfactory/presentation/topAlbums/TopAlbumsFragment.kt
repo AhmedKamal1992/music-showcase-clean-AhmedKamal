@@ -12,6 +12,7 @@ import akamal.de.lastfmappsfactory.data.topAlbums.model.TopAlbum
 import akamal.de.lastfmappsfactory.databinding.FragmentTopAlbumsBinding
 import akamal.de.lastfmappsfactory.platform.bases.BaseFragment
 import akamal.de.lastfmappsfactory.platform.bases.RecyclerViewClickListener
+import akamal.de.lastfmappsfactory.platform.extension.hideSoftKeyboard
 import akamal.de.lastfmappsfactory.platform.extension.viewModel
 import akamal.de.lastfmappsfactory.presentation.AppMainActivity
 import akamal.de.lastfmappsfactory.presentation.albumDetails.AlbumDetailsFragment
@@ -28,11 +29,11 @@ class TopAlbumsFragment : BaseFragment<FragmentTopAlbumsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppMainActivity).backState(false)
+        (activity as AppMainActivity).setTitle(getString(R.string.search_top))
         viewModel<TopAlbumsViewModel>(factory) {
             binding.get()?.apply {
                 viewModel = this@viewModel
-                btnFav.setOnClickListener { (activity as AppMainActivity).replaceFragment(FavoritesFragment()) }
+                btnSearch.setOnClickListener { this@viewModel.getAllAlbums(etSearch.text.toString()); activity?.hideSoftKeyboard() }
                 rvAlbumsList.adapter = adapter
                 lifecycleOwner = this@TopAlbumsFragment
                 adapter.setRecyclerViewClickListener(object: RecyclerViewClickListener {
@@ -44,10 +45,5 @@ class TopAlbumsFragment : BaseFragment<FragmentTopAlbumsBinding>() {
                 })
             }
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as AppMainActivity).backState(true)
     }
 }

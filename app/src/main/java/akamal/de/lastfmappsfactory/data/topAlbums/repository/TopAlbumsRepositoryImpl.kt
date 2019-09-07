@@ -9,6 +9,8 @@ import akamal.de.lastfmappsfactory.data.topAlbums.remoteDataSource.TopAlbumsRemo
 import io.reactivex.Single
 import javax.inject.Inject
 
-class TopAlbumsRepositoryImpl @Inject constructor(private val remoteDataSource: TopAlbumsRemoteDataSource, private val localDataSource: AlbumsDetailsLocalDataSource): TopAlbumsRepository {
-    override fun getTopAlbums(): Single<DataResult<TopAlbumsResponse>> = remoteDataSource.getTopAlbums().map { DataResult.Success(DataSource.Network, it) as DataResult<TopAlbumsResponse> }.onErrorReturn { DataResult.Error(DataSource.Network, it) }
+class TopAlbumsRepositoryImpl @Inject constructor(private val remoteDataSource: TopAlbumsRemoteDataSource): TopAlbumsRepository {
+    override fun getTopAlbums(artistName: String): Single<DataResult<TopAlbumsResponse>> =
+        remoteDataSource.getTopAlbums(artistName).map { DataResult.Success(DataSource.Network, it) as DataResult<TopAlbumsResponse> }.
+            onErrorReturn { DataResult.Error(DataSource.Network, it) }
 }

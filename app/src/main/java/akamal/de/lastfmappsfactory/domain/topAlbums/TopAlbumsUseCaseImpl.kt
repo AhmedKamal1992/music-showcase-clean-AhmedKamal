@@ -7,5 +7,5 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class TopAlbumsUseCaseImpl @Inject constructor(private val repository: TopAlbumsRepository): TopAlbumsUseCase {
-    override fun getAllAlbums(): Single<DataResult<TopAlbumsResponse>> = repository.getTopAlbums()
+    override fun getAllAlbums(artistName: String): Single<DataResult<TopAlbumsResponse>> = repository.getTopAlbums(artistName)
 }

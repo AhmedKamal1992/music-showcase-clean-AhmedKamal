@@ -14,12 +14,16 @@ class AppMainActivity : BaseActivity<ActivityAppMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        replaceFragment(TopAlbumsFragment())
+        replaceFragment(FavoritesFragment())
         binding.get()?.view = this
     }
 
     fun backState(enable: Boolean) {
         binding.get()?.btnBack?.visibility = if(enable) View.VISIBLE else View.GONE
+    }
+
+    fun setTitle(title: String) {
+        binding.get()?.textView5?.text = title
     }
 }
 

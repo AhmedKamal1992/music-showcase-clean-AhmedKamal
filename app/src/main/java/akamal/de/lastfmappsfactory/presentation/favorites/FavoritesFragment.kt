@@ -15,6 +15,7 @@ import akamal.de.lastfmappsfactory.platform.bases.RecyclerViewClickListener
 import akamal.de.lastfmappsfactory.platform.extension.viewModel
 import akamal.de.lastfmappsfactory.presentation.AppMainActivity
 import akamal.de.lastfmappsfactory.presentation.albumDetails.AlbumDetailsFragment
+import akamal.de.lastfmappsfactory.presentation.topAlbums.TopAlbumsFragment
 import akamal.de.lastfmappsfactory.presentation.topAlbums.TopAlbumsRvAdapter
 import akamal.de.lastfmappsfactory.presentation.topAlbums.TopAlbumsViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -28,10 +29,13 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppMainActivity).backState(false)
+        (activity as AppMainActivity).setTitle(getString(R.string.fav))
         viewModel<FavoritesViewModel>(factory) {
             binding.get()?.apply {
                 this@viewModel.getAllAlbums()
                 viewModel = this@viewModel
+                btnSearch.setOnClickListener { (activity as AppMainActivity).replaceFragment(TopAlbumsFragment()) }
                 rvAlbumsList.adapter = adapter
                 lifecycleOwner = this@FavoritesFragment
                 adapter.setRecyclerViewClickListener(object: RecyclerViewClickListener {
@@ -41,4 +45,10 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
             }
         }
     }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppMainActivity).backState(true)
+    }
+
 }

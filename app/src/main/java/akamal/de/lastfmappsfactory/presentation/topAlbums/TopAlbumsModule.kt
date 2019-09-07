@@ -40,7 +40,7 @@ class TopAlbumsViewModelModule {
 
     @Singleton
     @Provides
-    fun providesTopAlbumsRepository(localDataSource: AlbumsDetailsLocalDataSource, remoteDataSource: TopAlbumsRemoteDataSource): TopAlbumsRepository = TopAlbumsRepositoryImpl(remoteDataSource, localDataSource)
+    fun providesTopAlbumsRepository(remoteDataSource: TopAlbumsRemoteDataSource): TopAlbumsRepository = TopAlbumsRepositoryImpl(remoteDataSource)
 
     @Singleton
     @Provides

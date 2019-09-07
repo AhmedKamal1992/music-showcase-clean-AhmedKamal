@@ -5,5 +5,5 @@ import akamal.de.lastfmappsfactory.data.topAlbums.model.TopAlbumsResponse
 import io.reactivex.Single
 
 interface TopAlbumsUseCase {
-    fun getAllAlbums(): Single<DataResult<TopAlbumsResponse>>
+    fun getAllAlbums(artistName: String): Single<DataResult<TopAlbumsResponse>>
 }

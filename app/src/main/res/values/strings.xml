@@ -7,4 +7,10 @@
     <string name="add_to_favorites">Add to favorites</string>
     <string name="no_favorites">No Albums was added .. Please add</string>
     <string name="no_album">Album data is missing please try another</string>
+    <string name="artist_name">Artist Name</string>
+    <string name="search">Search</string>
+    <string name="empty_artist">Please Type an artist name before searching</string>
+    <string name="empty_result">Please search for your favorite artist</string>
+    <string name="fav">Favorites</string>
+    <string name="search_top">Search Top Albums</string>
 </resources>
