@@ -31,15 +31,15 @@ ext {
 
   //Unit Testing
   robolectric_version = '3.8'
-  junit_version = '4.12'
+  junit_version = '1.0.0'
   mockito_version = '2.1.0'
   kluent_version = '1.14'
   test_inline_version = '2.24.5'
   retrofit_mock_version = '2.5.0'
 
   //Acceptance Testing
-  runner_version = '1.0.2-alpha1'
-  espresso_version = '3.0.2-alpha1'
+  runner_version = '1.1.0'
+  espresso_version = '3.1.0'
 
   //Development
   leakCanaryVersion = '2.0-beta-3'
@@ -78,7 +78,7 @@ ext {
           kotlin:             "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
           kotlinTest:         "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
           robolectric:        "org.robolectric:robolectric:$robolectric_version",
-          junit:              "junit:junit:$junit_version",
+          junit:              "androidx.test.ext:junit:$junit_version",
           mockito:            "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_version",
           kluent:             "org.amshove.kluent:kluent:$kluent_version",
           mockitoInline:      "org.mockito:mockito-inline:$test_inline_version",
@@ -87,12 +87,12 @@ ext {
   ]
 
   acceptanceTesting = [
-          testRunner:         "com.android.support.test:runner:$runner_version",
-          testRules:          "com.android.support.test:rules:$runner_version",
-          espressoCore:       "com.android.support.test.espresso:espresso-core:$espresso_version",
-          espressoIntents:    "com.android.support.test.espresso:espresso-intents:$espresso_version",
-          androidAnnotations: "com.android.support:support-annotations:$appCompat_version",
+          testRunner:         "androidx.test:runner:$runner_version",
+          testRules:          "androidx.test:rules:$runner_version",
+          espressoCore:       "androidx.test.espresso:espresso-core:$espresso_version",
+          espressoIntents:    "androidx.support.test.espresso:espresso-intents:$espresso_version",
           androidTesting:     "android.arch.core:core-testing:$archComponents_version",
+          androidCoreTesting: "androidx.test:core:$runner_version",
   ]
 
   development = [

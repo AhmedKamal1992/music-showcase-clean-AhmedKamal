@@ -78,17 +78,17 @@ dependencies {
     //Unit/Integration tests dependencies
     testImplementation unitTestDependencies.kotlin
     testImplementation unitTestDependencies.kotlinTest
-    testImplementation unitTestDependencies.junit
     testImplementation unitTestDependencies.mockito
     testImplementation unitTestDependencies.mockitoInline
     testImplementation unitTestDependencies.kluent
     testImplementation unitTestDependencies.roomTest
 
     //Acceptance tests dependencies
+    androidTestImplementation unitTestDependencies.junit
     androidTestImplementation acceptanceTestDependencies.testRunner
     androidTestImplementation acceptanceTestDependencies.testRules
-    androidTestImplementation acceptanceTestDependencies.androidAnnotations
     androidTestImplementation acceptanceTestDependencies.androidTesting
+    androidTestImplementation acceptanceTestDependencies.androidCoreTesting
 
     //Development dependencies
     implementation developmentDependencies.timber

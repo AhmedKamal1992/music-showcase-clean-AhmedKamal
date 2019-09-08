@@ -28,6 +28,6 @@ abstract class BaseFragment<B: ViewDataBinding>: Fragment() {
     }
 
     fun showToast(msg: String) {
-        Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
     }
 }
