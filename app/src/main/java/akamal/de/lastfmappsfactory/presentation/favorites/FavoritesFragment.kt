@@ -51,4 +51,9 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
         (activity as AppMainActivity).backState(true)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.get()?.rvAlbumsList?.adapter = null
+    }
+
 }

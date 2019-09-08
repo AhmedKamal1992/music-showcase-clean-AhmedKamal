@@ -46,4 +46,9 @@ class TopAlbumsFragment : BaseFragment<FragmentTopAlbumsBinding>() {
             }
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.get()?.rvAlbumsList?.adapter = null
+    }
 }

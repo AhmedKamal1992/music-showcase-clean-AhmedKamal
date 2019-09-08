@@ -92,4 +92,5 @@ dependencies {
 
     //Development dependencies
     implementation developmentDependencies.timber
+    implementation developmentDependencies.leakCanary
 }

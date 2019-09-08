@@ -1,5 +1,6 @@
 package akamal.de.lastfmappsfactory.presentation.bindingAdapters
 
+import akamal.de.lastfmappsfactory.R
 import akamal.de.lastfmappsfactory.data.topAlbums.model.TopAlbum
 import akamal.de.lastfmappsfactory.platform.bases.BaseViewState
 import akamal.de.lastfmappsfactory.presentation.topAlbums.TopAlbumsRvAdapter
@@ -16,7 +17,8 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 fun loadImageFromUrl(view: ImageView, url: String?) {
     Glide.with(view.context).load(url).
         diskCacheStrategy(DiskCacheStrategy.ALL).
-        transition(DrawableTransitionOptions.withCrossFade()).into(view)
+        transition(DrawableTransitionOptions.withCrossFade()).
+        placeholder(R.drawable.nopic).into(view)
 }
 
 @BindingAdapter("loadImageFromCache")
