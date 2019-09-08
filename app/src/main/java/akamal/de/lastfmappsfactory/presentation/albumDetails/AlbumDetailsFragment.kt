@@ -8,6 +8,7 @@ import akamal.de.lastfmappsfactory.R
 import akamal.de.lastfmappsfactory.data.albumsDetails.model.TopAlbumDetails
 import akamal.de.lastfmappsfactory.databinding.FragmentAlbumDetailsBinding
 import akamal.de.lastfmappsfactory.platform.bases.BaseFragment
+import akamal.de.lastfmappsfactory.presentation.AppMainActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -47,6 +48,7 @@ class AlbumDetailsFragment : BaseFragment<FragmentAlbumDetailsBinding>() {
                     albumDetails = album
                     isAlbumInFavorites = album.isFavorite
                     rvTracks.adapter = adapter
+                    (activity as AppMainActivity).setTitle(album.name)
                     adapter.submitList(album.tracks.track)
 
                 btnAddRemoveFavorites.setOnClickListener { albumDetailsviewModel.saveOrRemoveAlbum(albumDetailsResponse) } } })
